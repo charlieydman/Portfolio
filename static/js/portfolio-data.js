@@ -6,6 +6,7 @@ const PORTFOLIO_DATA = {
             'description': 'Handcrafted silver rings with intricate designs',
             'image': 'Portfolio\static\img\IMG_2393.jpg',
             'thumbnail': 'Portfolio\static\img\IMG_2393.jpg',
+            'year': '2025',
             'tags': ['jewelry']
         }
     ],
@@ -38,14 +39,16 @@ function renderPortfolioProjects() {
                        data-description="${item.description}"
                        data-image="${item.image}"
                        data-thumbnail="${item.thumbnail}"
+                       data-year="${item.year}"
                        data-category="${CATEGORIES[category]}">
+                       
                         <span class="project-title">${item.title}</span>
                         ${item.tags && item.tags.length > 0 ? `
                             <div class="project-tags">
                                 ${item.tags.map(tag => `<span class="tag tag-${tag}">${tag}</span>`).join('')}
                             </div>
                         ` : ''}
-                        <span class="project-year">2025</span>
+                        <span class="project-year">${item.year}</span>
                     </a>
                 </div>
             `;
