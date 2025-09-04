@@ -1,152 +1,239 @@
-/* Custom styles for the portfolio website */
+/* Minimal Portfolio Design */
 
-/* Hero section */
-.hero-section {
-    min-height: 80vh;
-    background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-primary) 100%);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.min-vh-75 {
-    min-height: 75vh;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Gallery cards */
-.gallery-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Minimal Portfolio Layout */
+.minimal-portfolio {
+    min-height: 100vh;
+    padding: 4rem 2rem;
 }
 
-.gallery-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+.portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
 
-/* Image overlay effects */
-.overlay {
-    background: rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+/* Left Column: Projects */
+.projects-column {
+    padding-right: 2rem;
 }
 
-.gallery-card:hover .overlay,
-.card:hover .overlay {
-    opacity: 1;
+.project-item {
+    margin-bottom: 1.5rem;
 }
 
-/* Category icons hover effect */
-.category-icon {
-    transition: transform 0.3s ease;
+.project-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
 }
 
-.category-icon:hover {
-    transform: scale(1.1);
+.project-link:hover {
+    color: #666;
+    border-bottom-color: #ddd;
 }
 
-/* Custom button styles */
-.btn-outline-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(var(--bs-primary-rgb), 0.3);
+.project-title {
+    font-size: 1.1rem;
+    font-weight: 400;
 }
 
-/* Profile placeholder */
-.profile-placeholder {
-    background: linear-gradient(135deg, var(--bs-primary), var(--bs-info));
+.project-year {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 300;
 }
 
-/* Accordion custom styling */
-.accordion-button:not(.collapsed) {
-    background-color: var(--bs-primary);
-    color: white;
+/* Right Column: Profile */
+.profile-column {
+    text-align: center;
+    padding-left: 2rem;
 }
 
-.accordion-button:not(.collapsed)::after {
-    filter: brightness(0) invert(1);
+.profile-content {
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-/* Social links */
-.social-links a {
-    transition: color 0.3s ease, transform 0.3s ease;
-    display: inline-block;
+.profile-name {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #222;
 }
 
-.social-links a:hover {
-    color: var(--bs-primary) !important;
-    transform: translateY(-2px);
+.profile-title {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.5;
 }
 
-/* Custom spacing utilities */
-.py-6 {
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
+.highlight {
+    color: #007bff;
+    font-weight: 500;
 }
 
-/* Responsive adjustments */
+.profile-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+/* Minimal Navigation */
+.minimal-nav {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1000;
+}
+
+.minimal-nav a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.minimal-nav a:hover {
+    color: #007bff;
+}
+
+/* Gallery Minimal Design */
+.gallery-minimal {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: #222;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.gallery-item-minimal {
+    text-align: center;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    transition: opacity 0.2s ease;
+}
+
+.gallery-image:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.gallery-item-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.gallery-item-description {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .display-4 {
-        font-size: 2.5rem;
+    .portfolio-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 0 1rem;
     }
     
-    .hero-section {
-        min-height: 60vh;
+    .projects-column,
+    .profile-column {
+        padding: 0;
     }
     
-    .min-vh-75 {
-        min-height: auto;
+    .profile-name {
+        font-size: 2rem;
     }
     
-    .py-5 {
-        padding-top: 2rem !important;
-        padding-bottom: 2rem !important;
+    .profile-nav {
+        gap: 1.5rem;
+    }
+    
+    .minimal-portfolio {
+        padding: 3rem 1rem;
+    }
+    
+    .gallery-minimal {
+        padding: 3rem 1rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
     }
 }
 
-/* Loading animation for images */
-.card-img-top {
-    transition: opacity 0.3s ease;
-}
-
-.card-img-top:not([src]) {
-    opacity: 0.5;
-    background: var(--bs-secondary);
-}
-
-/* Navigation improvements */
-.navbar-brand {
-    font-size: 1.5rem;
-}
-
-.navbar {
-    backdrop-filter: blur(10px);
-    background: rgba(var(--bs-dark-rgb), 0.95) !important;
-}
-
-/* Footer improvements */
-footer {
-    margin-top: auto;
-}
-
-/* Form improvements */
+/* Form improvements for contact page */
 .form-control:focus,
 .form-select:focus {
-    border-color: var(--bs-primary);
-    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
 }
 
-/* Card hover effects for better interactivity */
-.card {
-    transition: all 0.3s ease;
-    border: 1px solid rgba(var(--bs-border-color-rgb), 0.5);
+/* Remove heavy Bootstrap styling for minimal look */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
-.card:hover {
-    border-color: var(--bs-primary);
-}
-
-/* Breadcrumb improvements */
-.breadcrumb-item + .breadcrumb-item::before {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* Sticky navigation improvements */
-.sticky-top {
-    transition: all 0.3s ease;
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
 }

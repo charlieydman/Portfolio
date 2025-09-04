@@ -94,16 +94,7 @@ CATEGORIES = {
 
 @app.route('/')
 def index():
-    # Get featured work (first item from each category)
-    featured_work = []
-    for category, items in PORTFOLIO_DATA.items():
-        if items:
-            featured_item = items[0].copy()
-            featured_item['category'] = category
-            featured_item['category_name'] = CATEGORIES[category]
-            featured_work.append(featured_item)
-    
-    return render_template('index.html', featured_work=featured_work, categories=CATEGORIES)
+    return render_template('index.html', portfolio_data=PORTFOLIO_DATA, categories=CATEGORIES)
 
 @app.route('/gallery/<category>')
 def gallery(category):
