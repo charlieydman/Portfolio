@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a personal portfolio website built with Flask that showcases creative works across multiple disciplines including jewelry making, woodworking, 3D modeling, and drawings. The application provides a clean, responsive interface for displaying artistic projects with an image gallery system, detailed project descriptions, and contact functionality. The website serves as a digital showcase for creative professionals to display their work and connect with potential clients.
+This is a static portfolio website showcasing creative works across multiple disciplines including jewelry, woodworking, and 3D models. The site features an interactive project browser with a minimal, clean design that emphasizes visual content. Originally built as a Flask application, it has been converted to a static site for GitHub Pages deployment, maintaining all interactive functionality through client-side JavaScript.
 
 ## User Preferences
 
@@ -11,40 +11,42 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Frontend Architecture
-The application uses a traditional server-side rendered architecture with Flask templates and Jinja2 templating engine. The frontend leverages Bootstrap 5 for responsive design and dark theme support, ensuring consistent styling across devices. JavaScript is used minimally for interactive features like image galleries and smooth scrolling, with GLightbox providing elegant lightbox functionality for image viewing.
+- **Static HTML Structure**: Three main pages (index.html, about.html, contact.html) with a grid-based layout using Bootstrap's dark theme
+- **Interactive Project Browser**: Two-column layout where the left column displays a project list and the right column shows either profile information or detailed project content
+- **Component-Based JavaScript**: Modular approach with separate files for gallery functionality and portfolio data management
+- **Responsive Design**: Mobile-first approach using CSS Grid and Bootstrap components
 
-### Backend Architecture
-The backend follows a simple Flask application structure with clear separation of concerns:
-- `app.py` serves as the application factory and entry point
-- `routes.py` contains all route definitions and business logic
-- Templates are organized in a dedicated `templates/` directory with template inheritance
-- Static assets (CSS/JS) are served from the `static/` directory
+### Data Management
+- **Client-Side Data Storage**: Portfolio data stored in JavaScript objects within `static/js/portfolio-data.js`, eliminating the need for a backend database
+- **Dynamic Content Rendering**: JavaScript-driven project rendering that populates the interface from the data structure
+- **Tag-Based Organization**: Projects categorized by type (jewelry, woodwork, WIP, sketch) with color-coded visual indicators
 
-The application uses a straightforward MVC pattern where routes act as controllers, templates as views, and portfolio data is currently stored as Python dictionaries (simulating a model layer).
+### User Interface Design
+- **Minimal Aesthetic**: Clean, typography-focused design with generous whitespace
+- **Interactive Gallery**: GLightbox integration for full-screen image viewing with touch navigation support
+- **State Management**: JavaScript handles switching between profile view and project detail view without page reloads
+- **Loading States**: Progressive image loading with error handling for missing assets
 
-### Data Storage
-Currently implements an in-memory data structure (`PORTFOLIO_DATA` dictionary) containing portfolio items organized by categories. This approach was chosen for simplicity and ease of deployment, though the code comments indicate awareness that a database would be more appropriate for production use. The data structure supports multiple categories with consistent schema including titles, descriptions, and image URLs.
-
-### Authentication and Authorization
-No authentication system is currently implemented, as this is a public portfolio website designed for showcasing work rather than user management. Session management is configured but minimal, primarily for potential future features like contact form submissions.
-
-### Template System
-Uses Jinja2 templating with a base template (`base.html`) that provides consistent navigation, Bootstrap integration, and common page structure. Child templates extend this base for specific pages (home, gallery, about, contact), promoting code reuse and maintainable styling.
+### Styling Architecture
+- **CSS Custom Properties**: Consistent color scheme and typography using CSS variables
+- **Component Styles**: Modular CSS structure with specific styling for project items, tags, and interactive elements
+- **Theme Integration**: Bootstrap dark theme as the foundation with custom overrides for branding
 
 ## External Dependencies
 
 ### Frontend Libraries
-- **Bootstrap 5**: CSS framework for responsive design and dark theme support via CDN
-- **Font Awesome 6**: Icon library for visual elements throughout the interface
-- **GLightbox**: JavaScript library for image lightbox functionality and gallery navigation
+- **Bootstrap 5**: UI framework with Replit dark theme variant for consistent styling
+- **Font Awesome 6**: Icon library for decorative and functional icons throughout the interface
+- **GLightbox**: Modern lightbox library for image gallery functionality with touch support and responsive behavior
 
-### Backend Framework
-- **Flask**: Core web framework handling routing, templating, and HTTP requests
-- **Python Standard Library**: Uses `os` for environment variable management and `logging` for debugging
+### Content Delivery
+- **Unsplash**: External image service providing placeholder images for portfolio projects
+- **CDN Dependencies**: All external libraries loaded via CDN for faster deployment and reduced bundle size
 
-### External Services
-- **Unsplash**: Image hosting service providing placeholder images for portfolio items via their API-based URLs
-- **CDN Services**: Content delivery for Bootstrap, Font Awesome, and GLightbox to improve loading performance
+### Deployment Platform
+- **GitHub Pages**: Static site hosting with automatic deployment from the main branch
+- **Git Integration**: Version control with standard Git workflow for updates and changes
 
-### Development Dependencies
-The application is configured for development with Flask's built-in server, debug mode enabled, and basic logging for troubleshooting. Production deployment would require additional considerations like WSGI server integration and environment-specific configuration.
+### Browser APIs
+- **DOM Manipulation**: Vanilla JavaScript for dynamic content updates and user interaction handling
+- **CSS Grid/Flexbox**: Modern layout technologies for responsive design without additional framework dependencies
