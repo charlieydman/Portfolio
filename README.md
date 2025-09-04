@@ -26,8 +26,6 @@ This is a  portfolio website showcasing my creative works across multiple discip
 - **CSS Custom Properties**: Consistent color scheme and typography using CSS variables
 - **Component Styles**: Modular CSS structure with specific styling for project items, tags, and interactive elements
 
-## External Dependencies
-
 ### Deployment Platform
 - **GitHub Pages**: Static site hosting with automatic deployment from the main branch
 - **Git Integration**: Version control with standard Git workflow for updates and changes
