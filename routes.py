@@ -96,24 +96,6 @@ CATEGORIES = {
 def index():
     return render_template('index.html', portfolio_data=PORTFOLIO_DATA, categories=CATEGORIES)
 
-@app.route('/gallery/<category>')
-def gallery(category):
-    if category not in PORTFOLIO_DATA:
-        return render_template('gallery.html', 
-                             category=category, 
-                             category_name='Unknown',
-                             items=[],
-                             categories=CATEGORIES,
-                             error="Category not found")
-    
-    items = PORTFOLIO_DATA[category]
-    category_name = CATEGORIES[category]
-    
-    return render_template('gallery.html', 
-                         category=category,
-                         category_name=category_name,
-                         items=items,
-                         categories=CATEGORIES)
 
 @app.route('/about')
 def about():

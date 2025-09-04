@@ -43,43 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add loading animation for cards
-    const cards = document.querySelectorAll('.card');
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
 
-    const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                cardObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        cardObserver.observe(card);
-    });
-
-    // Add CSS animation keyframes dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    `;
-    document.head.appendChild(style);
 
     // Contact form handling - display only mode
     const contactForm = document.querySelector('form');
@@ -180,40 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add parallax effect to hero section (if present)
-    const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            heroSection.style.transform = `translateY(${rate}px)`;
-        });
-    }
-
-    // Enhanced dropdown behavior
-    const dropdowns = document.querySelectorAll('.dropdown');
-    dropdowns.forEach(dropdown => {
-        dropdown.addEventListener('mouseenter', function() {
-            const dropdownToggle = this.querySelector('.dropdown-toggle');
-            const dropdownMenu = this.querySelector('.dropdown-menu');
-            
-            if (window.innerWidth >= 992) { // Only on desktop
-                dropdownToggle.click();
-            }
-        });
-
-        dropdown.addEventListener('mouseleave', function() {
-            const dropdownToggle = this.querySelector('.dropdown-toggle');
-            
-            if (window.innerWidth >= 992) { // Only on desktop
-                setTimeout(() => {
-                    if (!this.matches(':hover')) {
-                        dropdownToggle.click();
-                    }
-                }, 100);
-            }
-        });
-    });
 
     // Portfolio gallery initialized
 });
