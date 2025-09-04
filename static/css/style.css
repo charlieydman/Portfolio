@@ -1,0 +1,152 @@
+/* Custom styles for the portfolio website */
+
+/* Hero section */
+.hero-section {
+    min-height: 80vh;
+    background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-primary) 100%);
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+/* Gallery cards */
+.gallery-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Image overlay effects */
+.overlay {
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover .overlay,
+.card:hover .overlay {
+    opacity: 1;
+}
+
+/* Category icons hover effect */
+.category-icon {
+    transition: transform 0.3s ease;
+}
+
+.category-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Custom button styles */
+.btn-outline-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(var(--bs-primary-rgb), 0.3);
+}
+
+/* Profile placeholder */
+.profile-placeholder {
+    background: linear-gradient(135deg, var(--bs-primary), var(--bs-info));
+}
+
+/* Accordion custom styling */
+.accordion-button:not(.collapsed) {
+    background-color: var(--bs-primary);
+    color: white;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
+}
+
+/* Social links */
+.social-links a {
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: var(--bs-primary) !important;
+    transform: translateY(-2px);
+}
+
+/* Custom spacing utilities */
+.py-6 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section {
+        min-height: 60vh;
+    }
+    
+    .min-vh-75 {
+        min-height: auto;
+    }
+    
+    .py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+}
+
+/* Loading animation for images */
+.card-img-top {
+    transition: opacity 0.3s ease;
+}
+
+.card-img-top:not([src]) {
+    opacity: 0.5;
+    background: var(--bs-secondary);
+}
+
+/* Navigation improvements */
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(var(--bs-dark-rgb), 0.95) !important;
+}
+
+/* Footer improvements */
+footer {
+    margin-top: auto;
+}
+
+/* Form improvements */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Card hover effects for better interactivity */
+.card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--bs-border-color-rgb), 0.5);
+}
+
+.card:hover {
+    border-color: var(--bs-primary);
+}
+
+/* Breadcrumb improvements */
+.breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Sticky navigation improvements */
+.sticky-top {
+    transition: all 0.3s ease;
+}
