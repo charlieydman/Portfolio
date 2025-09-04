@@ -53,6 +53,11 @@ body {
     border-bottom-color: #ddd;
 }
 
+.project-link.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+}
+
 .project-title {
     font-size: 1.1rem;
     font-weight: 400;
@@ -68,11 +73,79 @@ body {
 .profile-column {
     text-align: center;
     padding-left: 2rem;
+    position: relative;
 }
 
 .profile-content {
     max-width: 400px;
     margin: 0 auto;
+}
+
+/* Project Detail Styles */
+.project-detail {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.project-detail-header {
+    margin-bottom: 2rem;
+}
+
+.back-to-profile {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.back-to-profile:hover {
+    color: #007bff;
+}
+
+.project-detail-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+}
+
+.project-detail-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.project-detail-category {
+    font-size: 1rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.project-detail-description {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.project-view-full {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 1px solid #007bff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.project-view-full:hover {
+    background-color: #007bff;
+    color: white;
 }
 
 .profile-name {

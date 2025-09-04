@@ -10,7 +10,12 @@
             {% for category, items in portfolio_data.items() %}
                 {% for item in items %}
                 <div class="project-item">
-                    <a href="{{ url_for('gallery', category=category) }}" class="project-link">
+                    <a href="#" class="project-link" 
+                       data-title="{{ item.title }}" 
+                       data-description="{{ item.description }}"
+                       data-image="{{ item.image }}"
+                       data-thumbnail="{{ item.thumbnail }}"
+                       data-category="{{ categories[category] }}">
                         <span class="project-title">{{ item.title }}</span>
                         <span class="project-year">2024</span>
                     </a>
@@ -19,9 +24,10 @@
             {% endfor %}
         </div>
         
-        <!-- Right Column: Profile Info -->
+        <!-- Right Column: Dynamic Content -->
         <div class="profile-column">
-            <div class="profile-content">
+            <!-- Default Profile Content -->
+            <div class="profile-content" id="profile-content">
                 <h1 class="profile-name">Your Name</h1>
                 <p class="profile-title">Creative professional specializing in <span class="highlight">handcrafted works</span></p>
                 
@@ -31,6 +37,20 @@
                     <a href="#" class="nav-link">LinkedIn</a>
                     <a href="#" class="nav-link">Instagram</a>
                 </nav>
+            </div>
+            
+            <!-- Project Detail Content (hidden by default) -->
+            <div class="project-detail" id="project-detail" style="display: none;">
+                <div class="project-detail-header">
+                    <a href="#" class="back-to-profile">← Back</a>
+                </div>
+                <div class="project-detail-content">
+                    <img id="project-image" src="" alt="" class="project-detail-image">
+                    <h2 id="project-title" class="project-detail-title"></h2>
+                    <p id="project-category" class="project-detail-category"></p>
+                    <p id="project-description" class="project-detail-description"></p>
+                    <a href="#" id="project-lightbox" class="gallery-item project-view-full">View Full Size</a>
+                </div>
             </div>
         </div>
     </div>

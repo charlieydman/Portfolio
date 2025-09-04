@@ -130,15 +130,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Enhanced navigation active state
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    // Project detail functionality
+    const projectLinks = document.querySelectorAll('.project-link');
+    const profileContent = document.getElementById('profile-content');
+    const projectDetail = document.getElementById('project-detail');
+    const backToProfile = document.querySelector('.back-to-profile');
     
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.classList.add('active');
-        }
+    // Handle project link clicks
+    projectLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const title = this.getAttribute('data-title');
+            const description = this.getAttribute('data-description');
+            const image = this.getAttribute('data-image');
+            const thumbnail = this.getAttribute('data-thumbnail');
+            const category = this.getAttribute('data-category');
+            
+            // Update project detail content
+            document.getElementById('project-title').textContent = title;
+            document.getElementById('project-description').textContent = description;
+            document.getElementById('project-category').textContent = category;
+            document.getElementById('project-image').src = thumbnail;
+            document.getElementById('project-image').alt = title;
+            document.getElementById('project-lightbox').href = image;
+            document.getElementById('project-lightbox').setAttribute('title', title);
+            
+            // Show project detail, hide profile
+            profileContent.style.display = 'none';
+            projectDetail.style.display = 'block';
+            
+            // Update active state
+            document.querySelectorAll('.project-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        });
     });
+    
+    // Handle back to profile
+    if (backToProfile) {
+        backToProfile.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Show profile, hide project detail
+            profileContent.style.display = 'block';
+            projectDetail.style.display = 'none';
+            
+            // Remove active states
+            document.querySelectorAll('.project-link').forEach(l => l.classList.remove('active'));
+        });
+    }
 
     // Add parallax effect to hero section (if present)
     const heroSection = document.querySelector('.hero-section');
