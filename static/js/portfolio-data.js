@@ -2,10 +2,10 @@
 const PORTFOLIO_DATA = {
     'jewelry': [
         {
-            'title': 'Silver Ring Collection',
-            'description': 'Handcrafted silver rings with intricate designs',
-            'image': 'Portfolio\static\img\IMG_2393.jpg',
-            'thumbnail': 'Portfolio\static\img\IMG_2393.jpg',
+            'title': 'Silver Necklace',
+            'description': 'Handcrafted silver pendant with an intricate design resting on cherrywood',
+            'image': 'static/img/IMG_2393.jpg',
+            'thumbnail': 'static/img/IMG_2393.jpg',
             'year': '2025',
             'tags': ['jewelry']
         }
