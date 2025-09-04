@@ -78,49 +78,32 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 
-    // Enhanced form handling
+    // Contact form handling - display only mode
     const contactForm = document.querySelector('form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(this);
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-            submitBtn.disabled = true;
+            // Show info message about contact form
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-info mt-3';
+            alertDiv.innerHTML = `
+                <i class="fas fa-info-circle me-2"></i>
+                This is a portfolio demonstration. To contact me, please use the email address listed in the contact information section.
+            `;
             
-            // Simulate form submission (replace with actual submission logic)
+            this.insertBefore(alertDiv, submitBtn.closest('.col-12'));
+            
+            // Remove alert after 8 seconds
             setTimeout(() => {
-                // Show success message
-                const alertDiv = document.createElement('div');
-                alertDiv.className = 'alert alert-success mt-3';
-                alertDiv.innerHTML = `
-                    <i class="fas fa-check-circle me-2"></i>
-                    Thank you for your message! I'll get back to you within 24-48 hours.
-                `;
-                
-                this.insertBefore(alertDiv, submitBtn.closest('.col-12'));
-                
-                // Reset form
-                this.reset();
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Remove alert after 5 seconds
-                setTimeout(() => {
-                    alertDiv.remove();
-                }, 5000);
-                
-                // Scroll to alert
-                alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-            }, 1500);
+                alertDiv.remove();
+            }, 8000);
+            
+            // Scroll to alert
+            alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
         // Form validation feedback
@@ -189,9 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Console log for debugging
-    console.log('Portfolio gallery initialized successfully');
-    console.log('GLightbox version:', GLightbox.version || 'Unknown');
+    // Portfolio gallery initialized
 });
 
 // Utility function for lazy loading images
