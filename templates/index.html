@@ -17,6 +17,13 @@
                        data-thumbnail="{{ item.thumbnail }}"
                        data-category="{{ categories[category] }}">
                         <span class="project-title">{{ item.title }}</span>
+                        {% if item.tags %}
+                            <div class="project-tags">
+                                {% for tag in item.tags %}
+                                    <span class="tag tag-{{ tag }}">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                         <span class="project-year">2024</span>
                     </a>
                 </div>
