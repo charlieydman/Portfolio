@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Creative Works</title>
+    
+    <!-- Bootstrap CSS with Replit Dark Theme -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- GLightbox CSS for Image Gallery -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="minimal-portfolio">
+        <div class="portfolio-container">
+            <!-- Left Column: Project List -->
+            <div class="projects-column">
+                <div id="project-list">
+                    <!-- Projects will be loaded by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Right Column: Dynamic Content -->
+            <div class="profile-column">
+                <!-- Default Profile Content -->
+                <div class="profile-content" id="profile-content">
+                    <h1 class="profile-name">Your Name</h1>
+                    <p class="profile-title">Creative professional specializing in <span class="highlight">handcrafted works</span></p>
+                    
+                    <nav class="profile-nav">
+                        <a href="about.html" class="nav-link">About</a>
+                        <a href="contact.html" class="nav-link">Email</a>
+                        <a href="#" class="nav-link">LinkedIn</a>
+                        <a href="#" class="nav-link">Instagram</a>
+                    </nav>
+                </div>
+                
+                <!-- Project Detail Content (hidden by default) -->
+                <div class="project-detail" id="project-detail" style="display: none;">
+                    <div class="project-detail-header">
+                        <a href="#" class="back-to-profile">← Back</a>
+                    </div>
+                    <div class="project-detail-content">
+                        <img id="project-image" src="" alt="" class="project-detail-image">
+                        <h2 id="project-title" class="project-detail-title"></h2>
+                        <p id="project-category" class="project-detail-category"></p>
+                        <p id="project-description" class="project-detail-description"></p>
+                        <a href="#" id="project-lightbox" class="gallery-item project-view-full">View Full Size</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GLightbox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    
+    <!-- Portfolio Data and Custom Scripts -->
+    <script src="static/js/portfolio-data.js"></script>
+    <script src="static/js/gallery.js"></script>
+</body>
+</html>
