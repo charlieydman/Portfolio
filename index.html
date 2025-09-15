@@ -4,13 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portfolio of Charlie Eydman</title>
-    <link rel="stylesheet" href="static/css/style.css" />
+    <title>Charlie Eydman</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="static/css/style.css" />
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -19,86 +22,128 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-7G5E9VLS49');
 </script>
 
 <body>
-
     <main class="columns" aria-label="Three independent columns">
-        <!-- Column 1: Projects -->
-        <section class="panel" id="projects-1" aria-labelledby="h-projects-1">
+        <!-- Column 1 -->
+        <section class="panel is-collapsed" id="projects-1" aria-labelledby="h-projects-1">
             <header class="panel__header">
-                <h2 id="h-projects-1" class="panel__title">Jewelry</h2>
+                <h1 id="h-projects-1" class="panel__title">Jewelry</h1>
             </header>
             <div class="panel__content">
-                <article class="card">
+                <article class="card" data-title="Silver necklace on cherrywood"
+                    data-text="2025 | Silver on cherry"
+                    data-images="static/img/IMG_2393.jpg, static/img/IMG_2384.jpg, static/img/IMG_2383.jpg, static/img/IMG_2382.jpg">
                     <figure class="media">
-                        <img src="static/img/IMG_2393.jpg" alt="Silver necklace on cherrywood" loading="lazy">
+                        <img src="static/img/IMG_2393.jpg" alt="Silver necklace" loading="lazy">
                     </figure>
-                    <h3 class="card__title"></h3>
-                    <p class="card__text">2025 | Silver necklace on cherrywood</p>
+                    <h3 class="card__title">Silver necklace on cherrywood</h3>
+                    <p class="card__text">2025 | Silver on cherry</p>
                 </article>
-                <article class="card">
+
+                <article class="card" data-title="Spikey Necklace" data-text="Silver spikey necklace"
+                    data-images="static/img/IMG_2384.jpg, static/img/IMG_2393.jpg">
                     <figure class="media">
-                        <img src="static/img/IMG_2393.jpg" alt="Silver necklace on cherrywood" loading="lazy">
+                        <img src="static/img/IMG_2384.jpg" alt="Spikey Necklace" loading="lazy">
                     </figure>
-                    <h3 class="card__title"></h3>
-                    <p class="card__text">2025 | Silver necklace on cherrywood</p>
+                    <h3 class="card__title">Spikey necklace</h3>
+                    <p class="card__text">2024 | Silver spikey necklace</p>
                 </article>
             </div>
         </section>
 
-        <!-- Column 2: Projects -->
-        <section class="panel" id="projects-2" aria-labelledby="h-projects-2">
+        <!-- Column 2 -->
+        <section class="panel is-collapsed" id="projects-2" aria-labelledby="h-projects-2">
             <header class="panel__header">
-                <h2 id="h-projects-2" class="panel__title">Woodwork</h2>
+                <h1 id="h-projects-2" class="panel__title">Woodwork</h1>
             </header>
             <div class="panel__content">
-                <article class="card">
+                <article class="card" data-title="Wavy Chess Board"
+                    data-text="Wavy chess board | WIP"
+                    data-images="static/img/IMG_2393.jpg, static/img/IMG_2393.jpg">
                     <figure class="media">
-                        <img src="static/img/IMG_2393.jpg" alt="Silver necklace on cherrywood" loading="lazy">
+                        <img src="static/img/IMG_2393.jpg" alt="Wavy chess board" loading="lazy">
                     </figure>
-                    <h3 class="card__title"></h3>
-                    <p class="card__text">2025 | Silver necklace on cherrywood</p>
+                    <h3 class="card__title">Wavy Chess Board</h3>
+                    <p class="card__text">2025 | Wavy Chess Board with hand-carved pieces | WIP</p>
                 </article>
-                <article class="card">
+
+                <article class="card" data-title="Puzzle Box" data-text="Wooden puzzle box wity a large compartment"
+                    data-images="static/img/IMG_2393.jpg">
                     <figure class="media">
-                        <img src="static/img/IMG_2393.jpg" alt="Silver necklace on cherrywood" loading="lazy">
+                        <img src="static/img/IMG_2393.jpg" alt="Puzzle Box" loading="lazy">
                     </figure>
-                    <h3 class="card__title"></h3>
-                    <p class="card__text">2025 | Silver necklace on cherrywood</p>
+                    <h3 class="card__title">Puzzle Box</h3>
+                    <p class="card__text">2024 | Wooden Puzzle Box</p>
                 </article>
             </div>
         </section>
 
-        <!-- Column 3: About Me -->
+        <!-- Column 3 (About stays full-width, non-collapsible) -->
         <aside class="panel" id="about" aria-labelledby="h-about">
-
             <div class="panel__content">
-                <h3 class="subhead">Charlie Eydman</h3>
-                <p></p>
-                <a href="https://www.linkedin.com/in/charlieydman/">LinkedIn</a>
-                <a href="https://www.instagram.com/charlieydman/">Instagram</a>
+                <h3 id="h-about" class="panel__title">Charlie Eydman</h3>
+                <p>Designer. Builder. Creator.</p>
+                <nav class="social">
+                    <a href="https://www.linkedin.com/in/charlieydman/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://www.instagram.com/charlieydman/" target="_blank" rel="noopener">Instagram</a>
+                </nav>
             </div>
         </aside>
     </main>
 
+    <!-- Modal (one global dialog) -->
+    <dialog id="post-modal" aria-labelledby="post-title">
+        <form method="dialog" class="modal__chrome">
+            <button class="modal__close" aria-label="Close">✕</button>
+        </form>
+
+        <div class="modal__content">
+            <h2 id="post-title" class="modal__title"></h2>
+            <p class="modal__text"></p>
+
+            <div class="modal__gallery" role="region" aria-label="Post images">
+                <button class="gallery__nav gallery__prev" aria-label="Previous">‹</button>
+                <img class="gallery__image" alt="">
+                <button class="gallery__nav gallery__next" aria-label="Next">›</button>
+            </div>
+
+            <div class="modal__thumbs" aria-label="Thumbnails"></div>
+        </div>
+    </dialog>
+
+    <!-- Scripts -->
     <script>
+        // Panels: collapse/expand columns; About stays full-size (no header, so untouched)
         (function () {
-            // Attach toggles to each panel header
-            document.querySelectorAll('.panel').forEach(panel => {
+            const container = document.querySelector('.columns');
+            const panels = Array.from(document.querySelectorAll('.panel'));
+            if (!container || panels.length === 0) return;
+
+            function updateColumns() {
+                const desktop = window.matchMedia('(min-width: 901px)').matches;
+                panels.forEach((panel, i) => {
+                    const varName = `--c${i + 1}`;
+                    if (desktop && panel.classList.contains('is-collapsed')) {
+                        container.style.setProperty(varName, 'var(--collapsed-w)');
+                    } else {
+                        container.style.setProperty(varName, '1fr');
+                    }
+                });
+            }
+
+            panels.forEach((panel, i) => {
                 const header = panel.querySelector('.panel__header');
                 const content = panel.querySelector('.panel__content');
-                if (!header || !content) return;
+                if (!header || !content) return; // about panel is intentionally non-collapsible
 
-                // A11y wiring
                 header.setAttribute('role', 'button');
                 header.setAttribute('tabindex', '0');
-                header.setAttribute('aria-expanded', 'true');
-                if (!content.id) {
-                    content.id = (panel.id ? panel.id + '-content' : 'panel-content-') + Math.random().toString(36).slice(2);
-                }
+                const collapsed = panel.classList.contains('is-collapsed');
+                header.setAttribute('aria-expanded', String(!collapsed));
+                if (!content.id) content.id = (panel.id || `panel-${i + 1}`) + '-content';
                 header.setAttribute('aria-controls', content.id);
 
                 const toggle = (e) => {
@@ -106,12 +151,97 @@
                     e.preventDefault();
                     panel.classList.toggle('is-collapsed');
                     header.setAttribute('aria-expanded', String(!panel.classList.contains('is-collapsed')));
+                    updateColumns();
                 };
 
                 header.addEventListener('click', toggle);
                 header.addEventListener('keydown', toggle);
             });
+
+            updateColumns();
+            window.addEventListener('resize', updateColumns);
         })();
+
+        // Modal: populate from card data, with gallery and a11y
+        (function () {
+                const modal = document.getElementById('post-modal');
+                const titleEl = modal.querySelector('#post-title');
+                const textEl = modal.querySelector('.modal__text');
+                const imgEl = modal.querySelector('.gallery__image');
+                const prevBtn = modal.querySelector('.gallery__prev');
+                const nextBtn = modal.querySelector('.gallery__next');
+                const thumbs = modal.querySelector('.modal__thumbs');
+                const closeBtn = modal.querySelector('.modal__close');
+
+                let images = [];
+                let index = 0;
+                let lastTrigger = null;
+
+                function fitGalleryToImage() {
+                    const g = modal.querySelector('.modal__gallery');
+                    const w = imgEl.naturalWidth, h = imgEl.naturalHeight;
+                    g.style.aspectRatio = (w > 0 && h > 0) ? `${w} / ${h}` : '16 / 10';
+                }
+
+                function setImage(i) {
+                    index = (i + images.length) % images.length;
+                    imgEl.onload = fitGalleryToImage;         // ensure aspect ratio updates even for cached images
+                    imgEl.src = images[index];
+                    imgEl.alt = titleEl.textContent ? `${titleEl.textContent} — image ${index + 1}` : `Image ${index + 1}`;
+                    thumbs.querySelectorAll('img').forEach((t, j) => t.setAttribute('aria-current', String(j === index)));
+                }
+
+                function populateFromCard(card) {
+                    titleEl.textContent = card.dataset.title || card.querySelector('.card__title')?.textContent?.trim() || 'Untitled';
+                    textEl.textContent = card.dataset.text || card.querySelector('.card__text')?.textContent?.trim() || '';
+                    const raw = card.dataset.images || card.querySelector('img')?.src || '';
+                    images = raw.split(',').map(s => s.trim()).filter(Boolean);
+                    if (images.length === 0) images = [''];
+
+                    thumbs.innerHTML = '';
+                    images.forEach((src, i) => {
+                        const t = document.createElement('img');
+                        t.src = src;
+                        t.alt = `Thumbnail ${i + 1}`;
+                        if (i === 0) t.setAttribute('aria-current', 'true');
+                        t.addEventListener('click', () => setImage(i));
+                        thumbs.appendChild(t);
+                    });
+
+                    setImage(0);
+                }
+
+                function openModalFor(card) {
+                    lastTrigger = card;
+                    populateFromCard(card);
+                    if (typeof modal.showModal === 'function') modal.showModal();
+                    else modal.setAttribute('open', '');
+                    closeBtn.focus();
+                }
+
+                function closeModal() {
+                    if (modal.open) modal.close(); else modal.removeAttribute('open');
+                    if (lastTrigger) lastTrigger.focus();
+                }
+
+                // Wire cards
+                document.querySelectorAll('.card').forEach(card => {
+                    card.setAttribute('tabindex', '0');
+                    card.addEventListener('click', () => openModalFor(card));
+                    card.addEventListener('keydown', e => {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModalFor(card); }
+                    });
+                });
+
+                // Gallery nav
+                prevBtn.addEventListener('click', () => setImage(index - 1));
+                nextBtn.addEventListener('click', () => setImage(index + 1));
+
+                // Close behavior
+                closeBtn.addEventListener('click', closeModal);
+                modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+                modal.addEventListener('cancel', (e) => { e.preventDefault(); closeModal(); }); // Esc
+            })();
     </script>
 </body>
 

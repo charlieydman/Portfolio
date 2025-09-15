@@ -1,144 +1,306 @@
-/* =========
-   Layout vars
-   ========= */
-:root{
-  --gap: 5px;
-  --bg: #f6f7f9;
-  --panel: #ffffff;
-  --text: #0b1220;
-  --muted: #656f7d;
+/* =========================
+   Design tokens / variables
+   ========================= */
+:root {
+  --bg: #f7f7f7;
+  --text: #171717;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --accent: #111827;
 
-  /* grid column widths controlled via JS when collapsing */
-  --c1: 1fr;
-  --c2: 1fr;
-  --c3: 1fr;
-  --collapsed-w: 56px; /* width of a minimized column */
+  --gap: 3px;
+  --collapsed-w: 140px;
+  /* used by JS to shrink columns */
 }
 
-/* =========
+/* =====
    Base
-   ========= */
-*{ box-sizing: border-box; }
-html, body{ height:100%; margin:0; }
-body{
-  background: var(--bg);
+   ===== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Spectral', ui-serif, Georgia, 'Times New Roman', Times, serif;
   color: var(--text);
-  font-family: "Spectral", Georgia, "Times New Roman", serif;
-  line-height: 1.6;
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* =========
-   3-column grid
-   ========= */
-.columns{
+/* ==================
+   Three-column layout
+   ================== */
+.columns {
   display: grid;
-  grid-template-columns: var(--c1) var(--c2) var(--c3);
+  grid-template-columns: var(--c1, 1fr) var(--c2, 1fr) var(--c3, 1fr);
   gap: var(--gap);
-  height: 100dvh;
-  min-height: 100vh;
-  padding: var(--gap);
+  min-height: 100dvh;
+  padding: 0;
 }
 
-/* each panel scrolls independently */
-.panel{
-  background: var(--panel);
-  border: none;
-  border-radius: 0;
+/* Panels */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: clip;
   display: flex;
   flex-direction: column;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  /* hide scrollbars but keep scrollability */
-  -ms-overflow-style: none;        /* IE/old Edge */
-  scrollbar-width: none;           /* Firefox */
-  scrollbar-gutter: stable both-edges; /* prevents layout shift on Windows */
+  min-width: 0;
 }
-.panel::-webkit-scrollbar{ width:0; height:0; } /* Chrome/Safari */
 
-/* sticky, clickable header */
-.panel__header{
-  position: sticky;
-  top: 0;
-  background: linear-gradient(#fafbfc,#f7f8fa);
-  padding: 12px 16px;
-  z-index: 1;
+.panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
   user-select: none;
 }
-.panel__title{
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text);
-}
 
-/* content area */
-.panel__content{
-  padding: 16px;
-  display: grid;
-  gap: 12px;
-  align-content: start;
-}
-
-/* optional card blocks */
-.card{ padding:12px; background:#f9fafb; }
-.card__title{ margin:0 0 6px 0; font-size:0.98rem; font-weight:600; }
-.card__text{ margin:0; color:var(--muted); }
-
-/* media helpers */
-.media{ margin:0; }
-.media img{
-  max-width:100%;
-  height:auto;
-  display:block;
-}
-.media__caption{
-  font-size:.875rem;
-  color:var(--muted);
-  margin-top:6px;
-}
-
-/* typography helpers */
-.subhead{ margin:.75rem 0 .25rem 0; font-size:0.98rem; font-weight:600; }
-.list{ margin:.25rem 0 .75rem 1.2rem; color:var(--muted); }
-
-/* =========
-   Collapse state
-   ========= */
-.panel.is-collapsed{
-  overflow: hidden; /* disable inner scrolling while collapsed */
-}
-.panel.is-collapsed .panel__content{
-  display: none;
-}
-.panel.is-collapsed .panel__header{
-  /* turn header into a full-height vertical label */
-  position: static;         /* no sticky when collapsed */
+.panel.is-collapsed .panel__header {
+  position: static;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  writing-mode: vertical-rl;
   text-orientation: mixed;
-  padding: 0;
-  background: linear-gradient(#fafbfc,#f0f2f5);
+  writing-mode: vertical-rl;
 }
-/* if you later add a chevron via ::after, hide or rotate it when collapsed */
-.panel.is-collapsed .panel__header::after{ content:""; }
+
+.panel__title {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.panel__content {
+  padding: 14px;
+  display: grid;
+  /* gap between article cards */
+  gap: 8px;
+}
+
+/* Collapsed behavior: hide content on desktop; mobile ignores collapse */
+@media (min-width: 901px) {
+  .panel.is-collapsed .panel__content {
+    display: none;
+  }
+}
 
 /* =========
-   Responsive
+   Card grid
    ========= */
-@media (min-width:901px){
-  body{ overflow: hidden; } /* avoid double scrollbars on desktop */
-}
-@media (max-width:900px){
-  .columns{
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-  body{ overflow: auto; }
-  .panel{ height: 85dvh; } /* keep each stacked panel usable */
+.card {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  transition: transform .12s ease, box-shadow .12s ease;
+  cursor: pointer;
 }
 
+.card:focus {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
+}
+
+/* Cards: show full image, allow variable heights (no cropping, no black bars) */
+.media {
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: transparent;
+  /* was #111; not needed if images fill width */
+}
+
+.media img {
+  width: 100%;
+  height: auto;
+  /* let height grow per image */
+  display: block;
+  object-fit: contain;
+  /* full image visible */
+  object-position: center;
+}
+
+.card__title {
+  margin: 2px 0 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.card__text {
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* =========== Social links */
+.social {
+  display: flex;
+  gap: 12px;
+}
+
+.social a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.social a:hover {
+  border-color: var(--accent);
+}
+
+/* =========== Responsiveness */
+@media (max-width: 900px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .panel__header {
+    cursor: default;
+  }
+
+  .panel.is-collapsed .panel__content {
+    display: block;
+  }
+}
+
+/* ======
+   Modal
+   ====== */
+#post-modal {
+  width: min(900px, 95vw);
+  border: none;
+  padding: 0;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+}
+
+#post-modal::backdrop {
+  background: rgba(0, 0, 0, .55);
+}
+
+/* Modal chrome */
+.modal__chrome {
+  position: absolute;
+  inset: 0 auto auto 0;
+}
+
+.modal__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Modal content */
+.modal__content {
+  padding: 20px 20px 24px;
+}
+
+.modal__title {
+  margin: 0 40px 10px 0;
+  font-size: 1.6rem;
+}
+
+.modal__text {
+  margin: 0 0 16px;
+  line-height: 1.55;
+}
+
+/* Gallery — container adapts to image aspect ratio */
+.modal__gallery {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: #111;
+  border-radius: 10px;
+  aspect-ratio: 16 / 10;
+  /* default; JS will overwrite to the real ratio */
+  overflow: hidden;
+  min-height: 200px;
+  /* avoids layout jump before image loads */
+}
+
+.gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* full image, never cropped */
+  object-position: center;
+  display: block;
+}
+
+/* Nav */
+.gallery__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.gallery__prev {
+  left: 8px;
+}
+
+.gallery__next {
+  right: 8px;
+}
+
+/* Thumbs */
+.modal__thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.modal__thumbs img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+  opacity: .75;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.modal__thumbs img[aria-current="true"] {
+  opacity: 1;
+  border-color: #333;
+}
