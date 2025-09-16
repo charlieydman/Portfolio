@@ -304,3 +304,55 @@ body {
   opacity: 1;
   border-color: #333;
 }
+
+/* Desktop: lock the page, let columns own the scroll */
+@media (min-width: 901px) {
+  body {
+    overflow: hidden;
+  }
+
+  .columns {
+    height: 100dvh;
+  }
+
+  /* fixed viewport height */
+  .panel {
+    min-height: 0;
+  }
+
+  /* allow inner scrollers to size correctly */
+}
+
+/* Make only Jewelry + Woodwork content areas scroll independently */
+#projects-1 .panel__content,
+#projects-2 .panel__content {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  /* smooth on iOS */
+  overscroll-behavior: contain;
+  /* no rubber-band into page */
+}
+
+/* Hide scrollbars (Firefox + WebKit/Chromium) */
+#projects-1 .panel__content,
+#projects-2 .panel__content {
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+#projects-1 .panel__content::-webkit-scrollbar,
+#projects-2 .panel__content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+  /* WebKit/Chromium */
+}
+
+/* Optional: keep section headers visible while the content scrolls */
+#projects-1 .panel__header,
+#projects-2 .panel__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--card);
+}
