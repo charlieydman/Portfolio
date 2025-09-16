@@ -14,9 +14,7 @@
   /* used by JS to shrink columns */
 }
 
-/* =====
-   Base
-   ===== */
+/* ===== Base ===== */
 * {
   box-sizing: border-box;
 }
@@ -35,9 +33,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* ==================
-   Three-column layout
-   ================== */
+/* ===== 3-column grid ===== */
 .columns {
   display: grid;
   grid-template-columns: var(--c1, 1fr) var(--c2, 1fr) var(--c3, 1fr);
@@ -46,7 +42,7 @@ body {
   padding: 0;
 }
 
-/* Panels */
+/* ===== Panels ===== */
 .panel {
   background: var(--card);
   border: 1px solid var(--border);
@@ -58,6 +54,7 @@ body {
 }
 
 .panel__header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,16 +63,6 @@ body {
   border-bottom: 1px solid var(--border);
   cursor: pointer;
   user-select: none;
-}
-
-.panel.is-collapsed .panel__header {
-  position: static;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-orientation: mixed;
-  writing-mode: vertical-rl;
 }
 
 .panel__title {
@@ -87,20 +74,59 @@ body {
 .panel__content {
   padding: 14px;
   display: grid;
-  /* gap between article cards */
   gap: 8px;
+  /* space between cards */
 }
 
-/* Collapsed behavior: hide content on desktop; mobile ignores collapse */
-@media (min-width: 901px) {
+/* Header affordance (chevron on expanded panels) */
+.panel:not(.is-collapsed) .panel__header::after {
+  content: "▾";
+  font-size: 14px;
+  color: var(--muted);
+  margin-left: auto;
+  transition: transform .15s ease, opacity .15s ease;
+  opacity: .75;
+}
+
+.panel:not(.is-collapsed) .panel__header:hover::after {
+  transform: translateY(1px);
+  opacity: 1;
+}
+
+.panel.is-collapsed .panel__header::after {
+  content: "";
+}
+
+/* Hide content for collapsed panels on desktop */
+@media (min-width:901px) {
   .panel.is-collapsed .panel__content {
     display: none;
   }
 }
 
-/* =========
-   Card grid
-   ========= */
+/* Collapsed columns: keep vertical title centered and pinned */
+@media (min-width:901px) {
+  .panel.is-collapsed {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    /* viewport tall */
+    align-self: start;
+  }
+
+  .panel.is-collapsed .panel__header {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    /* perfect center */
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    border-bottom: 0;
+    cursor: pointer;
+  }
+}
+
+/* ===== Cards ===== */
 .card {
   display: grid;
   grid-template-rows: auto auto auto;
@@ -113,32 +139,29 @@ body {
   cursor: pointer;
 }
 
-.card:focus {
-  outline: 2px solid #111;
-  outline-offset: 2px;
-}
-
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
 }
 
-/* Cards: show full image, allow variable heights (no cropping, no black bars) */
+.card:focus {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
+
 .media {
   margin: 0;
   border-radius: 8px;
   overflow: hidden;
   background: transparent;
-  /* was #111; not needed if images fill width */
 }
 
 .media img {
   width: 100%;
   height: auto;
-  /* let height grow per image */
+  /* variable heights, no crop */
   display: block;
   object-fit: contain;
-  /* full image visible */
   object-position: center;
 }
 
@@ -154,7 +177,7 @@ body {
   font-size: .95rem;
 }
 
-/* =========== Social links */
+/* ===== Social ===== */
 .social {
   display: flex;
   gap: 12px;
@@ -170,24 +193,7 @@ body {
   border-color: var(--accent);
 }
 
-/* =========== Responsiveness */
-@media (max-width: 900px) {
-  .columns {
-    grid-template-columns: 1fr;
-  }
-
-  .panel__header {
-    cursor: default;
-  }
-
-  .panel.is-collapsed .panel__content {
-    display: block;
-  }
-}
-
-/* ======
-   Modal
-   ====== */
+/* ===== Modal ===== */
 #post-modal {
   width: min(900px, 95vw);
   border: none;
@@ -200,7 +206,6 @@ body {
   background: rgba(0, 0, 0, .55);
 }
 
-/* Modal chrome */
 .modal__chrome {
   position: absolute;
   inset: 0 auto auto 0;
@@ -220,7 +225,6 @@ body {
   font-size: 18px;
 }
 
-/* Modal content */
 .modal__content {
   padding: 20px 20px 24px;
 }
@@ -235,7 +239,7 @@ body {
   line-height: 1.55;
 }
 
-/* Gallery — container adapts to image aspect ratio */
+/* Gallery — JS updates aspect-ratio to the image’s natural size */
 .modal__gallery {
   position: relative;
   display: grid;
@@ -243,22 +247,20 @@ body {
   background: #111;
   border-radius: 10px;
   aspect-ratio: 16 / 10;
-  /* default; JS will overwrite to the real ratio */
+  /* default; overwritten in JS */
   overflow: hidden;
   min-height: 200px;
-  /* avoids layout jump before image loads */
 }
 
 .gallery__image {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* full image, never cropped */
+  /* full image, no crop */
   object-position: center;
   display: block;
 }
 
-/* Nav */
 .gallery__nav {
   position: absolute;
   top: 50%;
@@ -281,7 +283,6 @@ body {
   right: 8px;
 }
 
-/* Thumbs */
 .modal__thumbs {
   display: flex;
   gap: 8px;
@@ -305,8 +306,8 @@ body {
   border-color: #333;
 }
 
-/* Desktop: lock the page, let columns own the scroll */
-@media (min-width: 901px) {
+/* ===== Independent scrolling for Jewelry/Woodwork (hidden scrollbars) ===== */
+@media (min-width:901px) {
   body {
     overflow: hidden;
   }
@@ -315,27 +316,18 @@ body {
     height: 100dvh;
   }
 
-  /* fixed viewport height */
   .panel {
     min-height: 0;
   }
 
-  /* allow inner scrollers to size correctly */
+  /* let inner scrollers size correctly */
 }
 
-/* Make only Jewelry + Woodwork content areas scroll independently */
 #projects-1 .panel__content,
 #projects-2 .panel__content {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  /* smooth on iOS */
   overscroll-behavior: contain;
-  /* no rubber-band into page */
-}
-
-/* Hide scrollbars (Firefox + WebKit/Chromium) */
-#projects-1 .panel__content,
-#projects-2 .panel__content {
   scrollbar-width: none;
   /* Firefox */
 }
@@ -348,11 +340,42 @@ body {
   /* WebKit/Chromium */
 }
 
-/* Optional: keep section headers visible while the content scrolls */
+/* keep headers pinned while content scrolls */
 #projects-1 .panel__header,
 #projects-2 .panel__header {
   position: sticky;
   top: 0;
   z-index: 1;
   background: var(--card);
+}
+
+/* ===== About credit (bottom-right) ===== */
+#about .panel__content {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+#about .credit {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: .85rem;
+  color: var(--muted);
+  opacity: .95;
+  pointer-events: none;
+}
+
+/* ===== Mobile ===== */
+@media (max-width:900px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .panel__header {
+    cursor: default;
+  }
+
+  .panel.is-collapsed .panel__content {
+    display: block;
+  }
 }
