@@ -101,7 +101,7 @@ body {
   content: "";
 }
 
-/* Collapsed columns: keep vertical title centered and pinned (desktop) */
+/* Collapsed columns: vertical title centered/pinned (desktop) */
 @media (min-width:901px) {
   .panel.is-collapsed {
     position: sticky;
@@ -114,6 +114,7 @@ body {
     height: 100%;
     display: grid;
     place-items: end center;
+    /* bottom-center; use center for middle */
     writing-mode: vertical-rl;
     text-orientation: mixed;
     border-bottom: 0;
@@ -190,14 +191,15 @@ body {
 .post-detail {
   display: none;
   /* shown when panel gains .has-detail */
-  padding:  0px 14px 14px;
+  padding: 0 14px 14px;
+  /* no top pad to avoid sticky gap */
   height: 100%;
   overflow: auto;
   background: var(--card);
   -webkit-overflow-scrolling: touch;
   display: grid;
   grid-template-rows: auto auto auto 1fr;
-  /* bar, text, stack header (optional), stack */
+  /* bar, text, (optional), stack */
   gap: 10px;
 }
 
@@ -214,7 +216,7 @@ body {
   display: none !important;
 }
 
-/* sticky back/title bar */
+/* sticky title bar */
 .post-detail__bar {
   position: sticky;
   top: 0;
@@ -225,15 +227,6 @@ body {
   align-items: center;
   gap: 10px;
   padding: 8px 0 10px;
-}
-
-.post-detail__back {
-  border: 1px solid var(--border);
-  background: #fff;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font: inherit;
 }
 
 .post-detail__title {
@@ -311,9 +304,9 @@ body.has-card-focus .panel:not(.is-focused) {
   /* WebKit/Chromium */
 }
 
-/* keep headers pinned while content/detail scrolls */
-#projects-1 .panel__header,
-#projects-2 .panel__header {
+/* keep headers pinned ONLY when the panel is expanded */
+#projects-1:not(.is-collapsed) .panel__header,
+#projects-2:not(.is-collapsed) .panel__header {
   position: sticky;
   top: 0;
   z-index: 4;
@@ -323,13 +316,15 @@ body.has-card-focus .panel:not(.is-focused) {
 /* ===== About credit (bottom-right) ===== */
 #about .panel__content {
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 48px;
+  /* reserve space for credit */
 }
 
 #about .credit {
   position: absolute;
   right: 10px;
-  top: 10px;
+  bottom: 10px;
+  /* anchored at bottom-right */
   font-size: .85rem;
   color: var(--muted);
   opacity: .95;
@@ -340,6 +335,10 @@ body.has-card-focus .panel:not(.is-focused) {
 @media (max-width:900px) {
   .columns {
     grid-template-columns: 1fr;
+    min-height: auto;
+    /* stop forcing tall empty rows */
+    align-content: start;
+    /* collapse rows to content */
   }
 
   .panel__header {
@@ -354,7 +353,7 @@ body.has-card-focus .panel:not(.is-focused) {
   z-index: 2;
   /* below .panel.is-focused (z:3), above others */
   background: transparent;
-  /* purely interactive; dimming handled by panels */
+  /* interaction only; dimming done on panels */
   display: none;
 }
 

@@ -132,9 +132,9 @@
                     <a href="https://www.linkedin.com/in/charlieydman/" target="_blank" rel="noopener">LinkedIn</a>
                     <a href="https://www.instagram.com/charlieydman/" target="_blank" rel="noopener">Instagram</a>
                 </nav>
-                <div class="credit">Portfolio built and designed by Charlie Eydman.</div>
+                
             </div>
-            
+            <div class="credit">Portfolio built and designed by Charlie Eydman.</div>
         </aside>
     </main>
 
@@ -244,13 +244,6 @@
                 showScrim();                       // block interactions with other columns
                 updateColumns();
 
-                // wire back
-                detail.querySelector('.post-detail__back').addEventListener('click', () => {
-                    teardownDetail(panel);
-                    updateColumns();
-                    panel.querySelector('.panel__header')?.focus();
-                });
-
                 // close on Esc inside detail
                 detail.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
@@ -260,9 +253,6 @@
                         panel.querySelector('.panel__header')?.focus();
                     }
                 });
-
-                // focus management
-                detail.querySelector('.post-detail__back').focus();
             }
 
             function closeAnyOpenDetail() {
