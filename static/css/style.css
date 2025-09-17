@@ -75,7 +75,11 @@ body {
   padding: 14px;
   display: grid;
   gap: 8px;
-  /* space between cards */
+}
+
+/* Collapse behavior: hide list whenever collapsed (mobile + desktop) */
+.panel.is-collapsed .panel__content {
+  display: none;
 }
 
 /* Header affordance (chevron on expanded panels) */
@@ -97,32 +101,22 @@ body {
   content: "";
 }
 
-/* Hide content for collapsed panels on desktop */
-@media (min-width:901px) {
-  .panel.is-collapsed .panel__content {
-    display: none;
-  }
-}
-
-/* Collapsed columns: keep vertical title centered and pinned */
+/* Collapsed columns: keep vertical title centered and pinned (desktop) */
 @media (min-width:901px) {
   .panel.is-collapsed {
     position: sticky;
     top: 0;
     height: 100dvh;
-    /* viewport tall */
     align-self: start;
   }
 
   .panel.is-collapsed .panel__header {
     height: 100%;
     display: grid;
-    place-items: center;
-    /* perfect center */
+    place-items: end center;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     border-bottom: 0;
-    cursor: pointer;
   }
 }
 
@@ -159,7 +153,6 @@ body {
 .media img {
   width: 100%;
   height: auto;
-  /* variable heights, no crop */
   display: block;
   object-fit: contain;
   object-position: center;
@@ -193,117 +186,91 @@ body {
   border-color: var(--accent);
 }
 
-/* ===== Modal ===== */
-#post-modal {
-  width: min(900px, 95vw);
-  border: none;
-  padding: 0;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
-}
-
-#post-modal::backdrop {
-  background: rgba(0, 0, 0, .55);
-}
-
-.modal__chrome {
-  position: absolute;
-  inset: 0 auto auto 0;
-}
-
-.modal__close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  border: 0;
-  background: rgba(0, 0, 0, .6);
-  color: #fff;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.modal__content {
-  padding: 20px 20px 24px;
-}
-
-.modal__title {
-  margin: 0 40px 10px 0;
-  font-size: 1.6rem;
-}
-
-.modal__text {
-  margin: 0 0 16px;
-  line-height: 1.55;
-}
-
-/* Gallery — JS updates aspect-ratio to the image’s natural size */
-.modal__gallery {
-  position: relative;
-  display: grid;
-  place-items: center;
-  background: #111;
-  border-radius: 10px;
-  aspect-ratio: 16 / 10;
-  /* default; overwritten in JS */
-  overflow: hidden;
-  min-height: 200px;
-}
-
-.gallery__image {
-  width: 100%;
+/* ===== In-column post detail (replaces modal) ===== */
+.post-detail {
+  display: none;
+  /* shown when panel gains .has-detail */
+  padding:  0px 14px 14px;
   height: 100%;
-  object-fit: contain;
-  /* full image, no crop */
-  object-position: center;
-  display: block;
+  overflow: auto;
+  background: var(--card);
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  /* bar, text, stack header (optional), stack */
+  gap: 10px;
 }
 
-.gallery__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: rgba(255, 255, 255, .18);
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 20px;
+.panel.has-detail .panel__content {
+  display: none !important;
 }
 
-.gallery__prev {
-  left: 8px;
+.panel.has-detail .post-detail {
+  display: grid;
 }
 
-.gallery__next {
-  right: 8px;
+/* hide detail when column is collapsed */
+.panel.is-collapsed .post-detail {
+  display: none !important;
 }
 
-.modal__thumbs {
+/* sticky back/title bar */
+.post-detail__bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
   display: flex;
-  gap: 8px;
-  margin-top: 10px;
-  overflow-x: auto;
-  padding-bottom: 2px;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 10px;
 }
 
-.modal__thumbs img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 6px;
-  opacity: .75;
+.post-detail__back {
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
   cursor: pointer;
-  border: 2px solid transparent;
+  font: inherit;
 }
 
-.modal__thumbs img[aria-current="true"] {
-  opacity: 1;
-  border-color: #333;
+.post-detail__title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.post-detail__text {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Vertical image stack */
+.post-detail__stack {
+  display: grid;
+  gap: 10px;
+}
+
+.post-detail__stack img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  background: #111;
+  /* placeholder while loading */
+}
+
+/* ===== Focus mode: dim other panels when a detail is open ===== */
+.panel.is-focused {
+  position: relative;
+  z-index: 3;
+}
+
+body.has-card-focus .panel:not(.is-focused) {
+  opacity: .35;
+  filter: grayscale(.2) saturate(.6);
+  transition: opacity .2s ease, filter .2s ease;
 }
 
 /* ===== Independent scrolling for Jewelry/Woodwork (hidden scrollbars) ===== */
@@ -324,7 +291,9 @@ body {
 }
 
 #projects-1 .panel__content,
-#projects-2 .panel__content {
+#projects-2 .panel__content,
+#projects-1 .post-detail,
+#projects-2 .post-detail {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
@@ -333,19 +302,21 @@ body {
 }
 
 #projects-1 .panel__content::-webkit-scrollbar,
-#projects-2 .panel__content::-webkit-scrollbar {
+#projects-2 .panel__content::-webkit-scrollbar,
+#projects-1 .post-detail::-webkit-scrollbar,
+#projects-2 .post-detail::-webkit-scrollbar {
   width: 0;
   height: 0;
   display: none;
   /* WebKit/Chromium */
 }
 
-/* keep headers pinned while content scrolls */
+/* keep headers pinned while content/detail scrolls */
 #projects-1 .panel__header,
 #projects-2 .panel__header {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 4;
   background: var(--card);
 }
 
@@ -357,8 +328,8 @@ body {
 
 #about .credit {
   position: absolute;
-  right: 12px;
-  bottom: 10px;
+  right: 10px;
+  top: 10px;
   font-size: .85rem;
   color: var(--muted);
   opacity: .95;
@@ -372,10 +343,21 @@ body {
   }
 
   .panel__header {
-    cursor: default;
+    cursor: pointer;
   }
+}
 
-  .panel.is-collapsed .panel__content {
-    display: block;
-  }
+/* Click-catcher when a card is focused */
+.focus-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  /* below .panel.is-focused (z:3), above others */
+  background: transparent;
+  /* purely interactive; dimming handled by panels */
+  display: none;
+}
+
+body.has-card-focus .focus-scrim {
+  display: block;
 }

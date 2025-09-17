@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Charlie Eydman</title>
+    <link rel="icon" type="image/webp" href="static/img/ce-logo.webp">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,12 +53,44 @@
                     <p class="card__text">2024 | Silver spikey necklace</p>
                 </article>
 
-                <article class="card" data-title="Assorted Rings" data-text="Sterling Silver Rings"
-                    data-images="static/img/IMG_2343.jpeg, static/img/IMG_1416.webp, static/img/IMG_1299.webp, static/img/IMG_1298.webp, static/img/IMG_1297.webp">
+                <article class="card" data-title="Tri Ring" data-text="Sterling Silver"
+                    data-images="static/img/DSC_6800.avif, static\img\DSC_6797.avif, static\img\DSC_6810.avif">
                     <figure class="media">
-                        <img src="static/img/IMG_2343.jpeg" alt="Assorted Rings" loading="lazy">
+                        <img src="static/img/DSC_6800.avif" alt="Tri Ring" loading="lazy">
                     </figure>
-                    <h3 class="card__title">Assorted Rings</h3>
+                    <h3 class="card__title">Tri Ring</h3>
+                    <p class="card__text">2023 | Sterling Silver</p>
+                </article>
+                <article class="card" data-title="Red Garnet Ring" data-text="Sterling Silver with a red garnet"
+                    data-images="static/img/DSC_6796.avif, static/img/DSC_6811.avif, static/img/DSC_6825.avif">
+                    <figure class="media">
+                        <img src="static/img/DSC_6796.avif" alt="Red Garnet Ring" loading="lazy">
+                    </figure>
+                    <h3 class="card__title">Red Garnet Ring</h3>
+                    <p class="card__text">2023 | Sterling Silver with a red garnet</p>
+                </article>
+                <article class="card" data-title="Wave Ring" data-text="Sterling Silver"
+                    data-images="static/img/DSC_6807.avif, static\img\DSC_6806.avif, static\img\DSC_6827.avif, static\img\DSC_6828.avif ">
+                    <figure class="media">
+                        <img src="static/img/DSC_6807.avif" alt="Wave Ring" loading="lazy">
+                    </figure>
+                    <h3 class="card__title">Wave Ring</h3>
+                    <p class="card__text">2023 | Sterling Silver</p>
+                </article>
+                <article class="card" data-title="Rock Ring" data-text="Sterling Silver"
+                    data-images="static/img/DSC_6814.avif, static/img/DSC_6813.avif">
+                    <figure class="media">
+                        <img src="static/img/DSC_6814.avif" alt="Rock Ring" loading="lazy">
+                    </figure>
+                    <h3 class="card__title">Rock Ring</h3>
+                    <p class="card__text">2023 | Sterling Silver Rings</p>
+                </article>
+                <article class="card" data-title="Crown Ring" data-text="Sterling Silver"
+                    data-images="static/img/DSC_6801.avif, static/img/DSC_6812.avif">
+                    <figure class="media">
+                        <img src="static/img/DSC_6801.avif" alt="Crown Ring" loading="lazy">
+                    </figure>
+                    <h3 class="card__title">Crown Ring</h3>
                     <p class="card__text">2023 | Sterling Silver Rings</p>
                 </article>
             </div>
@@ -79,10 +112,10 @@
                     <p class="card__text">2025 | Wavy Chess Board with hand-carved pieces | WIP</p>
                 </article>
 
-                <article class="card" data-title="Puzzle Box" data-text="Wooden puzzle box wity a large compartment"
-                    data-images="static/img/IMG_1473.webp, static/img/IMG_1474.webp">
+                <article class="card" data-title="Puzzle Box" data-text="Wooden puzzle box with a large compartment"
+                    data-images="static/img/DSC_6830.avif, static/img/DSC_6837.avif, static/img/DSC_6842.avif">
                     <figure class="media">
-                        <img src="static/img/IMG_1473.webp" alt="Puzzle Box" loading="lazy">
+                        <img src="static/img/DSC_6830.avif" alt="Puzzle Box" loading="lazy">
                     </figure>
                     <h3 class="card__title">Puzzle Box</h3>
                     <p class="card__text">2020 | Wooden Puzzle Box</p>
@@ -90,7 +123,7 @@
             </div>
         </section>
 
-        <!-- Column 3 (About stays full-width, non-collapsible) -->
+        <!-- Column 3 -->
         <aside class="panel" id="about" aria-labelledby="h-about">
             <div class="panel__content">
                 <h3 id="h-about" class="panel__title">Charlie Eydman</h3>
@@ -99,41 +132,22 @@
                     <a href="https://www.linkedin.com/in/charlieydman/" target="_blank" rel="noopener">LinkedIn</a>
                     <a href="https://www.instagram.com/charlieydman/" target="_blank" rel="noopener">Instagram</a>
                 </nav>
+                <div class="credit">Portfolio built and designed by Charlie Eydman.</div>
             </div>
-            <div class="credit">Portfolio built and designed by Charlie Eydman.</div>
+            
         </aside>
     </main>
 
-    <!-- Modal (one global dialog) -->
-    <dialog id="post-modal" aria-labelledby="post-title">
-        <form method="dialog" class="modal__chrome">
-            <button class="modal__close" aria-label="Close">✕</button>
-        </form>
-
-        <div class="modal__content">
-            <h2 id="post-title" class="modal__title"></h2>
-            <p class="modal__text"></p>
-
-            <div class="modal__gallery" role="region" aria-label="Post images">
-                <button class="gallery__nav gallery__prev" aria-label="Previous">‹</button>
-                <img class="gallery__image" alt="">
-                <button class="gallery__nav gallery__next" aria-label="Next">›</button>
-            </div>
-
-            <div class="modal__thumbs" aria-label="Thumbnails"></div>
-        </div>
-    </dialog>
-
     <!-- Scripts -->
     <script>
-        // Panels: collapse/expand columns; About stays full-size (no header, so untouched)
         (function () {
             const container = document.querySelector('.columns');
             const panels = Array.from(document.querySelectorAll('.panel'));
             if (!container || panels.length === 0) return;
 
+            /* ----- column width controller ----- */
             function updateColumns() {
-                const desktop = window.matchMedia('(min-width: 901px)').matches;
+                const desktop = matchMedia('(min-width: 901px)').matches;
                 panels.forEach((panel, i) => {
                     const varName = `--c${i + 1}`;
                     if (desktop && panel.classList.contains('is-collapsed')) {
@@ -144,21 +158,140 @@
                 });
             }
 
+            /* ----- scrim to block other panels and capture outside clicks ----- */
+            let scrim = null;
+            function ensureScrim() {
+                if (!scrim) {
+                    scrim = document.createElement('div');
+                    scrim.className = 'focus-scrim';
+                    scrim.addEventListener('click', () => {
+                        const focused = document.querySelector('.panel.is-focused');
+                        if (focused) { teardownDetail(focused); updateColumns(); }
+                    });
+                    document.body.appendChild(scrim);
+                }
+                return scrim;
+            }
+            function showScrim() { ensureScrim(); }
+            function hideScrim() { if (scrim) { scrim.remove(); scrim = null; } }
+
+            /* ----- helpers to open/close detail ----- */
+            function teardownDetail(panel) {
+                const detail = panel.querySelector('.post-detail');
+                if (detail) detail.remove();                      // hard remove prevents ghosts
+                panel.classList.remove('has-detail', 'is-focused');
+                document.body.classList.remove('has-card-focus');
+                hideScrim();
+            }
+
+            function ensureCleanDetail(panel) {
+                // always start fresh to avoid duplicate content
+                teardownDetail(panel);
+                const detail = document.createElement('div');
+                detail.className = 'post-detail';
+                detail.innerHTML = `
+          <div class="post-detail__bar">
+            <h2 class="post-detail__title"></h2>
+          </div>
+          <p class="post-detail__text"></p>
+          <div class="post-detail__stack" aria-label="Post images"></div>
+        `;
+                panel.appendChild(detail);
+                return detail;
+            }
+
+            function openDetailFor(card) {
+                const panel = card.closest('.panel');
+                const detail = ensureCleanDetail(panel);
+
+                const title = card.dataset.title || card.querySelector('.card__title')?.textContent?.trim() || 'Untitled';
+                const text = card.dataset.text || card.querySelector('.card__text')?.textContent?.trim() || '';
+                detail.querySelector('.post-detail__title').textContent = title;
+                detail.querySelector('.post-detail__text').textContent = text;
+
+                // Build a vertical stack of images (lazy-loaded)
+                const raw = card.dataset.images || card.querySelector('img')?.src || '';
+                const images = raw.split(',').map(s => s.trim()).filter(Boolean);
+                const stack = detail.querySelector('.post-detail__stack');
+                const useIO = 'IntersectionObserver' in window;
+
+                const loadImg = (imgEl) => {
+                    const src = imgEl.dataset.src;
+                    if (!src || imgEl.src) return;
+                    imgEl.src = src;
+                    imgEl.removeAttribute('data-src');
+                };
+
+                let io;
+                if (useIO) {
+                    io = new IntersectionObserver((entries) => {
+                        entries.forEach(e => { if (e.isIntersecting) { loadImg(e.target); io.unobserve(e.target); } });
+                    }, { root: detail, rootMargin: '200px 0px' });
+                }
+
+                images.forEach((src, i) => {
+                    const img = document.createElement('img');
+                    img.alt = `${title} — image ${i + 1}`;
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+                    img.dataset.src = src;           // defer actual src
+                    stack.appendChild(img);
+                    if (useIO) io.observe(img); else loadImg(img);
+                });
+
+                panel.classList.add('has-detail', 'is-focused');
+                document.body.classList.add('has-card-focus');
+                showScrim();                       // block interactions with other columns
+                updateColumns();
+
+                // wire back
+                detail.querySelector('.post-detail__back').addEventListener('click', () => {
+                    teardownDetail(panel);
+                    updateColumns();
+                    panel.querySelector('.panel__header')?.focus();
+                });
+
+                // close on Esc inside detail
+                detail.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        teardownDetail(panel);
+                        updateColumns();
+                        panel.querySelector('.panel__header')?.focus();
+                    }
+                });
+
+                // focus management
+                detail.querySelector('.post-detail__back').focus();
+            }
+
+            function closeAnyOpenDetail() {
+                const open = document.querySelector('.panel.has-detail');
+                if (open) teardownDetail(open);
+            }
+
+            /* ----- header toggle: close detail first, then collapse/expand ----- */
             panels.forEach((panel, i) => {
                 const header = panel.querySelector('.panel__header');
                 const content = panel.querySelector('.panel__content');
-                if (!header || !content) return; // about panel is intentionally non-collapsible
+                if (!header || !content) return;
 
                 header.setAttribute('role', 'button');
                 header.setAttribute('tabindex', '0');
-                const collapsed = panel.classList.contains('is-collapsed');
-                header.setAttribute('aria-expanded', String(!collapsed));
                 if (!content.id) content.id = (panel.id || `panel-${i + 1}`) + '-content';
                 header.setAttribute('aria-controls', content.id);
 
                 const toggle = (e) => {
                     if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
                     e.preventDefault();
+
+                    // if detail is open in this panel, close it first
+                    if (panel.classList.contains('has-detail')) {
+                        teardownDetail(panel);
+                        updateColumns();
+                        return;
+                    }
+
                     panel.classList.toggle('is-collapsed');
                     header.setAttribute('aria-expanded', String(!panel.classList.contains('is-collapsed')));
                     updateColumns();
@@ -168,90 +301,41 @@
                 header.addEventListener('keydown', toggle);
             });
 
-            updateColumns();
-            window.addEventListener('resize', updateColumns);
-        })();
-
-        // Modal: populate from card data, with gallery and a11y
-        (function () {
-                const modal = document.getElementById('post-modal');
-                const titleEl = modal.querySelector('#post-title');
-                const textEl = modal.querySelector('.modal__text');
-                const imgEl = modal.querySelector('.gallery__image');
-                const prevBtn = modal.querySelector('.gallery__prev');
-                const nextBtn = modal.querySelector('.gallery__next');
-                const thumbs = modal.querySelector('.modal__thumbs');
-                const closeBtn = modal.querySelector('.modal__close');
-
-                let images = [];
-                let index = 0;
-                let lastTrigger = null;
-
-                function fitGalleryToImage() {
-                    const g = modal.querySelector('.modal__gallery');
-                    const w = imgEl.naturalWidth, h = imgEl.naturalHeight;
-                    g.style.aspectRatio = (w > 0 && h > 0) ? `${w} / ${h}` : '16 / 10';
-                }
-
-                function setImage(i) {
-                    index = (i + images.length) % images.length;
-                    imgEl.onload = fitGalleryToImage;         // ensure aspect ratio updates even for cached images
-                    imgEl.src = images[index];
-                    imgEl.alt = titleEl.textContent ? `${titleEl.textContent} — image ${index + 1}` : `Image ${index + 1}`;
-                    thumbs.querySelectorAll('img').forEach((t, j) => t.setAttribute('aria-current', String(j === index)));
-                }
-
-                function populateFromCard(card) {
-                    titleEl.textContent = card.dataset.title || card.querySelector('.card__title')?.textContent?.trim() || 'Untitled';
-                    textEl.textContent = card.dataset.text || card.querySelector('.card__text')?.textContent?.trim() || '';
-                    const raw = card.dataset.images || card.querySelector('img')?.src || '';
-                    images = raw.split(',').map(s => s.trim()).filter(Boolean);
-                    if (images.length === 0) images = [''];
-
-                    thumbs.innerHTML = '';
-                    images.forEach((src, i) => {
-                        const t = document.createElement('img');
-                        t.src = src;
-                        t.alt = `Thumbnail ${i + 1}`;
-                        if (i === 0) t.setAttribute('aria-current', 'true');
-                        t.addEventListener('click', () => setImage(i));
-                        thumbs.appendChild(t);
-                    });
-
-                    setImage(0);
-                }
-
-                function openModalFor(card) {
-                    lastTrigger = card;
-                    populateFromCard(card);
-                    if (typeof modal.showModal === 'function') modal.showModal();
-                    else modal.setAttribute('open', '');
-                    closeBtn.focus();
-                }
-
-                function closeModal() {
-                    if (modal.open) modal.close(); else modal.removeAttribute('open');
-                    if (lastTrigger) lastTrigger.focus();
-                }
-
-                // Wire cards
-                document.querySelectorAll('.card').forEach(card => {
-                    card.setAttribute('tabindex', '0');
-                    card.addEventListener('click', () => openModalFor(card));
-                    card.addEventListener('keydown', e => {
-                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModalFor(card); }
-                    });
+            /* ----- wire cards to open in-column detail ----- */
+            document.querySelectorAll('.card').forEach(card => {
+                card.setAttribute('tabindex', '0');
+                card.addEventListener('click', (e) => {
+                    // If another card is open, scrim will handle outside clicks; still guard here
+                    if (document.body.classList.contains('has-card-focus')) return;
+                    openDetailFor(card);
                 });
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        if (document.body.classList.contains('has-card-focus')) return;
+                        e.preventDefault(); openDetailFor(card);
+                    }
+                });
+            });
 
-                // Gallery nav
-                prevBtn.addEventListener('click', () => setImage(index - 1));
-                nextBtn.addEventListener('click', () => setImage(index + 1));
+            /* global ESC closes any open detail */
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { closeAnyOpenDetail(); updateColumns(); }
+            });
 
-                // Close behavior
-                closeBtn.addEventListener('click', closeModal);
-                modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-                modal.addEventListener('cancel', (e) => { e.preventDefault(); closeModal(); }); // Esc
-            })();
+            /* guard against keyboard-activating other columns while focused */
+            document.addEventListener('keydown', (e) => {
+                if (!document.body.classList.contains('has-card-focus')) return;
+                const focused = document.querySelector('.panel.is-focused');
+                if (!focused) return;
+                if ((e.key === 'Enter' || e.key === ' ') && !focused.contains(e.target)) {
+                    e.preventDefault();
+                    teardownDetail(focused); updateColumns();
+                }
+            }, true);
+
+            updateColumns();
+            addEventListener('resize', updateColumns);
+        })();
     </script>
 </body>
 
