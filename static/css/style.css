@@ -342,6 +342,10 @@ body.has-card-focus .panel:not(.is-focused) {
   z-index: 1;
 }
 
+#about .bio {
+  width: 500px;
+}
+
 /* ===== Mobile ===== */
 @media (max-width:900px) {
   .columns {
