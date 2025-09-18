@@ -44,10 +44,15 @@ body {
 
 /* ===== Panels ===== */
 .panel {
+  position: relative;
+  /* anchor abspos children (e.g., About credit) */
+  z-index: 0;
+  /* create stacking context */
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  overflow: clip;
+  overflow: hidden;
+  /* use real clipping; avoid iOS Safari leaks */
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -313,10 +318,15 @@ body.has-card-focus .panel:not(.is-focused) {
   background: var(--card);
 }
 
-/* ===== About credit (bottom-right) ===== */
-#about .panel__content {
+/* ===== About credit (bottom-right), anchored to the panel ===== */
+#about {
   position: relative;
-  padding-bottom: 48px;
+}
+
+/* credit positions against the panel box */
+
+#about .panel__content {
+  padding-bottom: 56px;
   /* reserve space for credit */
 }
 
@@ -324,11 +334,12 @@ body.has-card-focus .panel:not(.is-focused) {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  /* anchored at bottom-right */
+  /* anchored bottom-right */
   font-size: .85rem;
   color: var(--muted);
   opacity: .95;
   pointer-events: none;
+  z-index: 1;
 }
 
 /* ===== Mobile ===== */
