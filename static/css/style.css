@@ -9,7 +9,6 @@
   --border: #e5e7eb;
   --accent: #111827;
 
-  --gap: 3px;
   --collapsed-w: 140px;
   /* used by JS to shrink columns */
 }
@@ -37,35 +36,39 @@ body {
 .columns {
   display: grid;
   grid-template-columns: var(--c1, 1fr) var(--c2, 1fr) var(--c3, 1fr);
-  gap: var(--gap);
+  gap: 0;
+  /* no gutter; we’ll draw our own dividers */
   min-height: 100dvh;
   padding: 0;
 }
 
-/* ===== Panels ===== */
+/* ===== Panels (flat, only vertical dividers between columns) ===== */
 .panel {
   position: relative;
-  /* anchor abspos children (e.g., About credit) */
   z-index: 0;
-  /* create stacking context */
   background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0;
+  /* remove curves */
   overflow: hidden;
-  /* use real clipping; avoid iOS Safari leaks */
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
+/* draw a single vertical divider between columns */
+.panel+.panel {
+  border-left: 1px solid var(--border);
+}
+
 .panel__header {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: end center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 12px 14px;
+  padding: 10px 12px;
+  /* slightly tighter */
   border-bottom: 1px solid var(--border);
+  /* horizontal rule under header */
   cursor: pointer;
   user-select: none;
 }
@@ -76,10 +79,19 @@ body {
   margin: 0;
 }
 
+.about__title {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 0;
+  margin-top: 10px;
+}
+
 .panel__content {
-  padding: 14px;
+  padding: 0;
+  /* no extra padding; cards provide spacing */
   display: grid;
-  gap: 8px;
+  gap: 0;
+  /* separators come from .card borders */
 }
 
 /* Collapse behavior: hide list whenever collapsed (mobile + desktop) */
@@ -118,32 +130,41 @@ body {
   .panel.is-collapsed .panel__header {
     height: 100%;
     display: grid;
-    place-items: end center;
-    /* bottom-center; use center for middle */
+    place-items: center;
+    /* center the vertical label */
     writing-mode: vertical-rl;
     text-orientation: mixed;
     border-bottom: 0;
+    /* no horizontal line in collapsed bar */
   }
 }
 
-/* ===== Cards ===== */
+/* ===== Cards (flat list, 1px separators) ===== */
 .card {
   display: grid;
   grid-template-rows: auto auto auto;
-  gap: 5px;
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: #fff;
-  transition: transform .12s ease, box-shadow .12s ease;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  /* divider between items */
+  border-radius: 0;
+  background: transparent;
+  /* flat */
+  transition: background-color .12s ease;
   cursor: pointer;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
+.panel__content .card:first-child {
+  border-top: 0;
 }
 
+/* no extra line at the top */
+
+.card:hover {
+  background: #f9fafb;
+}
+
+/* subtle hover without shadows */
 .card:focus {
   outline: 2px solid #111;
   outline-offset: 2px;
@@ -151,7 +172,8 @@ body {
 
 .media {
   margin: 0;
-  border-radius: 8px;
+  border-radius: 0;
+  /* no curves on imagery */
   overflow: hidden;
   background: transparent;
 }
@@ -192,19 +214,19 @@ body {
   border-color: var(--accent);
 }
 
-/* ===== In-column post detail (replaces modal) ===== */
+/* ===== In-column post detail (flat) ===== */
 .post-detail {
   display: none;
   /* shown when panel gains .has-detail */
-  padding: 0 14px 14px;
-  /* no top pad to avoid sticky gap */
+  padding: 0 12px 12px;
+  /* match card padding */
   height: 100%;
   overflow: auto;
   background: var(--card);
   -webkit-overflow-scrolling: touch;
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
-  /* bar, text, (optional), stack */
+  grid-template-rows: auto auto 1fr;
+  /* bar, text, stack */
   gap: 10px;
 }
 
@@ -216,18 +238,17 @@ body {
   display: grid;
 }
 
-/* hide detail when column is collapsed */
 .panel.is-collapsed .post-detail {
   display: none !important;
 }
 
-/* sticky title bar */
 .post-detail__bar {
   position: sticky;
   top: 0;
   z-index: 2;
   background: var(--card);
   border-bottom: 1px solid var(--border);
+  /* flat rule */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -244,7 +265,6 @@ body {
   color: var(--muted);
 }
 
-/* Vertical image stack */
 .post-detail__stack {
   display: grid;
   gap: 10px;
@@ -254,7 +274,8 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 10px;
+  border-radius: 0;
+  /* flat */
   background: #111;
   /* placeholder while loading */
 }
@@ -323,18 +344,15 @@ body.has-card-focus .panel:not(.is-focused) {
   position: relative;
 }
 
-/* credit positions against the panel box */
-
 #about .panel__content {
-  padding-bottom: 56px;
-  /* reserve space for credit */
+  padding: 0 12px 56px;
 }
 
+/* reserve space for credit */
 #about .credit {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  /* anchored bottom-right */
   font-size: .85rem;
   color: var(--muted);
   opacity: .95;
@@ -342,7 +360,11 @@ body.has-card-focus .panel:not(.is-focused) {
   z-index: 1;
 }
 
+/* let the bio wrap naturally, don’t hard-limit width */
 #about .bio {
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  margin: 0 0 8px;
   width: 370px;
 }
 
@@ -351,9 +373,7 @@ body.has-card-focus .panel:not(.is-focused) {
   .columns {
     grid-template-columns: 1fr;
     min-height: auto;
-    /* stop forcing tall empty rows */
     align-content: start;
-    /* collapse rows to content */
   }
 
   .panel__header {
@@ -368,7 +388,6 @@ body.has-card-focus .panel:not(.is-focused) {
   z-index: 2;
   /* below .panel.is-focused (z:3), above others */
   background: transparent;
-  /* interaction only; dimming done on panels */
   display: none;
 }
 
